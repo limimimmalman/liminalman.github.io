@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio.exe</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    @keyframes shooting-star {
+      0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 1; }
+      100% { transform: translateX(-150vw) translateY(150vh) rotate(-45deg); opacity: 0; }
+    }
+    .star { animation: twinkle infinite ease-in-out; }
+    .shooting-star {
+      position: absolute;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+      animation: shooting-star 4s infinite linear;
+      opacity: 0;
+    }
+
+
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: rgba(100, 149, 237, 0.5); border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(100, 149, 237, 0.8); }
+
+
+    .text-shadow-sm { text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+    .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+  </style>
+</head>
+
+<body class="min-h-screen w-full relative overflow-hidden bg-gradient-to-b from-slate-900 via-blue-950 to-blue-900 font-sans text-slate-100 flex items-center justify-center p-4 m-0">
+
+  <div id="stars-container" class="absolute inset-0 z-0 pointer-events-none overflow-hidden"></div>
+
+  <svg viewBox="0 0 1000 300" preserveAspectRatio="none" class="absolute bottom-0 w-full h-[40vh] z-0 drop-shadow-2xl">
+    <polygon points="0,300 1000,300 1000,100 850,50 700,120 500,20 300,150 150,80 0,180" fill="#1e3a8a" opacity="0.6" />
+    <polygon points="0,300 1000,300 1000,150 900,120 750,200 600,90 400,180 200,110 50,220 0,190" fill="#1e40af" opacity="0.5" />
+    <polygon points="0,300 1000,300 1000,180 800,90 650,220 450,110 250,240 100,160 0,220" fill="#172554" opacity="0.8" />
+    <polygon points="0,300 1000,300 1000,250 850,190 700,280 500,180 300,270 150,210 0,260" fill="#0f172a" />
+  </svg>
+
+  <div class="relative z-10 w-full max-w-3xl rounded-xl shadow-[0_0_30px_rgba(0,0,0,0.5)] overflow-hidden border border-white/30 bg-blue-500/20 backdrop-blur-md transition-all duration-500">
+    
+    <div class="h-10 w-full bg-gradient-to-b from-blue-300/60 via-blue-500/60 to-blue-600/60 flex items-center justify-between px-3 border-b border-white/20 select-none shadow-sm backdrop-blur-sm">
+      <div class="flex items-center gap-2 text-white/90 font-medium text-sm text-shadow-sm shadow-black/50">
+        <i data-lucide="code" width="16" height="16" class="drop-shadow-md"></i>
+        <span>Portfolio.exe</span>
+      </div>
+      <div class="flex items-center gap-1">
+        <button class="w-8 h-6 flex items-center justify-center rounded-[3px] bg-white/10 hover:bg-white/30 border border-transparent hover:border-white/40 transition-colors">
+          <i data-lucide="minus" width="14" height="14" class="text-white drop-shadow-md"></i>
+        </button>
+        <button class="w-8 h-6 flex items-center justify-center rounded-[3px] bg-white/10 hover:bg-white/30 border border-transparent hover:border-white/40 transition-colors">
+          <i data-lucide="square" width="12" height="12" class="text-white drop-shadow-md"></i>
+        </button>
+        <button class="w-10 h-6 flex items-center justify-center rounded-tr-md rounded-bl-sm bg-[#c13535]/80 hover:bg-[#e81123] border border-transparent hover:border-white/40 shadow-inner transition-colors">
+          <i data-lucide="x" width="14" height="14" class="text-white drop-shadow-md"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="p-6 md:p-10 min-h-[450px] bg-slate-900/60 flex flex-col">
+      
+      <div id="page-1" class="flex-1 flex flex-col fade-in">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-8 flex-1">
+          
+          <div class="w-32 h-32 shrink-0 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 p-1 shadow-lg shadow-blue-500/20 border border-white/10">
+            <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center relative overflow-hidden">
+              <img 
+                id="profile-img"
+                src="https://cdn.discordapp.com/attachments/1245486718086418645/1479417381594988574/DqPGnnJ.jpg?ex=69abf64e&is=69aaa4ce&hm=014df1d8c8fbc87ca95ca46dc695a96090a62bb3a79c621bc29d6fcb04ffcf51&"
+                alt="Profile" 
+                class="w-full h-full object-cover" 
+              />
+              <div id="fallback-icon" class="hidden">
+                <i data-lucide="user" width="64" height="64" class="text-blue-400/50"></i>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent h-1/2 rounded-t-full pointer-events-none"></div>
+            </div>
+          </div>
+
+          <div class="flex-1 text-center md:text-left space-y-4">
+            <div>
+              <h1 class="text-2xl md:text-3xl font-bold text-white drop-shadow-md">
+                Professional roblox luau programmer
+              </h1>
+              <div class="h-1 w-20 bg-blue-500 rounded-full mt-3 mx-auto md:mx-0 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+            </div>
+            
+            <div class="text-slate-300 text-lg leading-relaxed bg-black/20 p-5 rounded-lg border border-white/5 shadow-inner">
+              <p>
+                hi im <span class="text-blue-300 font-semibold">mrlog/limi</span> im 16 and ive been doing roblox luau for a while now but haven't worked on any projects that became long term. you can check things ive made so far on the next page.
+              </p>
+              <p class="mt-4 text-base">
+                if you wanna reach out my discord is <span class="text-blue-300 font-semibold">alcperchance</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end mt-8">
+          <button id="btn-to-page-2" class="group flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-6 py-3 rounded-lg shadow-lg shadow-blue-500/30 transition-all border border-blue-400/30">
+            See my projects
+            <i data-lucide="arrow-right" width="18" height="18" class="group-hover:translate-x-1 transition-transform"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="page-2" class="hidden flex-1 flex flex-col fade-in">
+        <h2 class="text-2xl font-bold text-white mb-6 drop-shadow-md flex items-center gap-2">
+          <i data-lucide="code" class="text-blue-400"></i>
+          Things I've Made
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+          
+          <div class="space-y-4">
+            <h3 class="text-blue-300 font-semibold uppercase tracking-wider text-sm mb-2">Roblox Games</h3>
+            
+            <a href="https://www.roblox.com/games/119725468708582/vampire-survivors-gun-test" target="_blank" rel="noopener noreferrer" class="block group bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400/50 p-4 rounded-lg transition-all shadow-lg backdrop-blur-sm">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="font-medium text-white group-hover:text-blue-300 transition-colors">Vampire Survivors Gun Test</h4>
+                  <p class="text-slate-400 text-sm mt-1">Combat mechanics & system testing.</p>
+                </div>
+                <i data-lucide="external-link" width="16" height="16" class="text-slate-500 group-hover:text-blue-400"></i>
+              </div>
+            </a>
+
+            <a href="https://www.roblox.com/games/97909545355148/Obby-But-There-s-a-Twist-Every-5-Seconds" target="_blank" rel="noopener noreferrer" class="block group bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400/50 p-4 rounded-lg transition-all shadow-lg backdrop-blur-sm">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="font-medium text-white group-hover:text-blue-300 transition-colors leading-tight">Obby But There's a Twist Every 5 Seconds</h4>
+                  <p class="text-slate-400 text-sm mt-1">Timed event loop programming.</p>
+                </div>
+                <i data-lucide="external-link" width="16" height="16" class="text-slate-500 group-hover:text-blue-400 shrink-0 ml-2"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="flex flex-col h-full">
+            <h3 class="text-blue-300 font-semibold uppercase tracking-wider text-sm mb-2">Showcase Video</h3>
+            
+            <div id="video-wrapper" class="relative w-full aspect-video rounded-lg overflow-hidden border border-white/10 bg-black/50 shadow-lg mt-1 group">
+              
+              <div id="epilepsy-warning" class="absolute inset-0 z-20 bg-slate-900/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center">
+                <div class="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center mb-4">
+                  <i data-lucide="alert-triangle" width="32" height="32" class="text-red-400"></i>
+                </div>
+                <h4 class="text-red-400 font-bold text-lg mb-2">Epilepsy Warning</h4>
+                <p class="text-sm text-slate-300 mb-6">
+                  This video contains rapid flashing lights and fast-moving effects that may trigger seizures for people with photosensitive epilepsy.
+                </p>
+                <button id="btn-play-video" class="bg-red-500 hover:bg-red-600 text-white font-medium px-5 py-2.5 rounded shadow-lg shadow-red-500/20 transition-all flex items-center gap-2">
+                  <i data-lucide="play" width="16" height="16" fill="currentColor"></i>
+                  I Understand, Play Video
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-start mt-8 pt-4 border-t border-white/10">
+          <button id="btn-to-page-1" class="group flex items-center gap-2 text-slate-300 hover:text-white px-4 py-2 rounded-lg hover:bg-white/5 transition-all">
+            <i data-lucide="arrow-left" width="18" height="18" class="group-hover:-translate-x-1 transition-transform"></i>
+            Back to Profile
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      lucide.createIcons();
+
+
+      const starsContainer = document.getElementById("stars-container");
+      
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement("div");
+        star.className = "absolute bg-white rounded-full star";
+        star.style.top = `${Math.random() * 70}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        
+        const size = `${Math.random() * 2 + 1}px`;
+        star.style.width = size;
+        star.style.height = size;
+        
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        
+        starsContainer.appendChild(star);
+      }
+
+
+      for (let i = 0; i < 3; i++) {
+        const shootingStar = document.createElement("div");
+        shootingStar.className = "shooting-star";
+        shootingStar.style.top = `${-10 - Math.random() * 20}%`;
+        shootingStar.style.left = `${50 + Math.random() * 80}%`;
+        shootingStar.style.animationDelay = `${Math.random() * 15 + i * 5}s`;
+        
+        starsContainer.appendChild(shootingStar);
+      }
+
+
+      const page1 = document.getElementById("page-1");
+      const page2 = document.getElementById("page-2");
+      
+      document.getElementById("btn-to-page-2").addEventListener("click", () => {
+        page1.classList.add("hidden");
+        page2.classList.remove("hidden");
+      });
+
+      document.getElementById("btn-to-page-1").addEventListener("click", () => {
+        page2.classList.add("hidden");
+        page1.classList.remove("hidden");
+      });
+
+
+      const profileImg = document.getElementById("profile-img");
+      const fallbackIcon = document.getElementById("fallback-icon");
+      
+      profileImg.addEventListener("error", () => {
+        profileImg.classList.add("hidden");
+        fallbackIcon.classList.remove("hidden");
+      });
+
+
+      const btnPlayVideo = document.getElementById("btn-play-video");
+      const warningScreen = document.getElementById("epilepsy-warning");
+      const videoWrapper = document.getElementById("video-wrapper");
+
+      btnPlayVideo.addEventListener("click", () => {
+        warningScreen.remove(); 
+        
+
+        const iframe = document.createElement("iframe");
+        iframe.className = "absolute top-0 left-0 w-full h-full z-10";
+        iframe.src = "https://www.youtube.com/embed/hZPPMVoav38?autoplay=1";
+        iframe.title = "YouTube video player";
+        iframe.frameBorder = "0";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        
+        videoWrapper.appendChild(iframe);
+      });
+    });
+  </script>
+</body>
+</html>
